@@ -25,12 +25,20 @@ jobs:
             - node_modules
 
       - run:
+          name: Run ESLint
+          command: npm run lint
+
+      - run:
+          name: Check Formatting
+          command: npx prettier --check .
+
+      - run:
           name: Verify Cypress
           command: npx cypress verify
 
       - run:
           name: Run Cypress Tests
-          command: npx cypress run
+          command: npm run test:report
 
       - store_artifacts:
           path: cypress/reports
@@ -44,12 +52,9 @@ jobs:
           path: cypress/videos
           destination: videos
 
-      - store_test_results:
-          path: cypress/results
-
 workflows:
   version: 2
 
-  cypress-workflow:
+  qa-pipeline:
     jobs:
       - cypress-test
