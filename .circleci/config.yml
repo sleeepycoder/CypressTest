@@ -7,6 +7,8 @@ jobs:
 
     working_directory: ~/project
 
+    parallelism: 2
+
     environment:
       CI: true
 
@@ -40,10 +42,13 @@ jobs:
           command: npx cypress verify
 
       - run:
-          name: Run Cypress Tests
-          command: npm run test:report
+          name: Run Cypress Tests (Cypress Cloud)
+          command: |
+            npx cypress run \
+              --record \
+              --parallel \
+              --key $CYPRESS_RECORD_KEY
 
-      # Always upload artifacts, even if tests fail
       - store_artifacts:
           path: cypress/reports
           destination: reports
