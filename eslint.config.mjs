@@ -1,9 +1,9 @@
-import globals from "globals";
-import eslintPluginCypress from "eslint-plugin-cypress";
+import globals from 'globals';
+import eslintPluginCypress from 'eslint-plugin-cypress';
 
 export default [
   {
-    files: ["cypress/**/*.js"],
+    files: ['cypress/**/*.js'],
 
     languageOptions: {
       globals: {
@@ -17,12 +17,12 @@ export default [
     },
 
     rules: {
-      "no-unused-vars": "warn",
-      "no-console": "off",
-      "cypress/no-unnecessary-waiting": "warn",
-      "cypress/assertion-before-screenshot": "error",
-      "cypress/no-force": "warn",
-      "cypress/no-assigning-return-values": "error"
+      'no-unused-vars': 'warn',
+      'no-console': 'off',
+      'cypress/no-unnecessary-waiting': 'warn',
+      'cypress/assertion-before-screenshot': 'error',
+      'cypress/no-force': 'warn',
+      'cypress/no-assigning-return-values': 'error',
     },
   },
 ];
