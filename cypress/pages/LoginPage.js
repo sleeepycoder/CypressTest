@@ -28,6 +28,21 @@ registerUser(firstName, email) {
         cy.get('[data-qa="mobile_number"]').type('+1234567890');
         cy.get('[data-qa="create-account"]').click();
     }
+    login(){
+          cy.fixture('savedUser.json').then((savedUser) => {
+            if (!savedUser || !savedUser.email) {
+                throw new Error('No saved user found. Run the registration test first or ensure savedUser.json exists.');
+            }
+            cy.log('Saved User: ' + savedUser.email);
+            cy.get('[data-qa="login-email"]').should('be.visible').clear().type(savedUser.email);
+            cy.get('[data-qa="login-password"]').should('be.visible').clear().type(savedUser.password || '');
+            cy.get('[data-qa="login-button"]').click();
+            cy.get('.shop-menu')
+                .last()
+                .should('be.visible')
+                .should('contain', ' Logged in as ' + user.firstName);
+        });
+    }
 };
 
 export default new LoginPage();

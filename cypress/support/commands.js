@@ -15,6 +15,19 @@
     cy.get('input[name="password"]').type(password);
     cy.get('button[type="submit"]').click();
   });
+
+// Save a user object (e.g. { firstName, email }) to localStorage
+Cypress.Commands.add('saveUserToLocal', (user) => {
+  if (!user) return cy.log('saveUserToLocal: no user provided');
+  return cy.window().then((win) => {
+    win.localStorage.setItem('testUser', JSON.stringify(user));
+  }).then(() => {
+    // also persist to a fixture file so data survives between tests
+    return cy.writeFile('cypress/fixtures/savedUser.json', user);
+  });
+});
+
+// Retrieve the saved user object: try localStorage first, then fallback to savedUser.json
 //
 //
 // -- This is a child command --

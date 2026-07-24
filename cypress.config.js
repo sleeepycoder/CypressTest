@@ -20,11 +20,14 @@ module.exports = defineConfig({
     },
     reporter: "cypress-mochawesome-reporter",
     reporterOptions: {
-      reportDir: "cypress/reports",
+      reportDir: "cypress/reports/mochawesome-report",
       charts: true,
       reportPageTitle: "Automation Exercise Test Report",
       embeddedScreenshots: true,
       inlineAssets: true,
+      overwrite: false,
+      html: true,
+      json: true, 
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

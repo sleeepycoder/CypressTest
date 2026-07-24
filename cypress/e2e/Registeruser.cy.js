@@ -7,7 +7,7 @@ describe('Register User', () => {
     before(() => {
         cy.visit('/'); // Replace with your registration page URL
     })
-    it('should register a new user', () => {
+    it('should register a new user and Delete Account', () => {
         cy.get("a[href='/login']").should("be.visible").click();
         LoginPage.registerUser(user.firstName, user.email);
         LoginPage.SignUpDetails(user.password);

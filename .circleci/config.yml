@@ -1,0 +1,53 @@
+version: 2.1
+
+jobs:
+  cypress-test:
+    docker:
+      - image: cimg/node:22.17-browsers
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: Install Dependencies
+          command: npm ci
+
+      - save_cache:
+          key: node-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Verify Cypress
+          command: npx cypress verify
+
+      - run:
+          name: Run Cypress Tests & Generate Mochawesome Report
+          command: npm run test:report
+
+      - store_artifacts:
+          path: cypress/reports/mochawesome-report
+          destination: mochawesome-report
+
+      - store_artifacts:
+          path: cypress/screenshots
+          destination: screenshots
+
+      - store_artifacts:
+          path: cypress/videos
+          destination: videos
+
+      - store_test_results:
+          path: cypress/results
+
+workflows:
+  version: 2
+  cypress-workflow:
+    jobs:
+      - cypress-test
