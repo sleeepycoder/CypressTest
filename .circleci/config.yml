@@ -7,6 +7,9 @@ jobs:
 
     working_directory: ~/project
 
+    environment:
+      CI: true
+
     steps:
       - checkout
 
@@ -40,17 +43,21 @@ jobs:
           name: Run Cypress Tests
           command: npm run test:report
 
+      # Always upload artifacts, even if tests fail
       - store_artifacts:
           path: cypress/reports
-          destination: cypress-report
+          destination: reports
+          when: always
 
       - store_artifacts:
           path: cypress/screenshots
           destination: screenshots
+          when: always
 
       - store_artifacts:
           path: cypress/videos
           destination: videos
+          when: always
 
 workflows:
   version: 2

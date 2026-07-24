@@ -6,16 +6,16 @@ module.exports = defineConfig({
 
   reporter: 'cypress-mochawesome-reporter',
 
-  reporterOptions: {
-    reportDir: 'cypress/reports',
-    charts: true,
-    embeddedScreenshots: true,
-    inlineAssets: true,
-    saveAllAttempts: false,
-    overwrite: false,
-    html: true,
-    json: true,
-  },
+ reporterOptions: {
+  reportDir: "cypress/reports",
+  charts: true,
+  embeddedScreenshots: true,
+  inlineAssets: true,
+  saveAllAttempts: false,
+  overwrite: false,
+  html: true,
+  json: true
+},
 
   e2e: {
     baseUrl: 'https://automationexercise.com/',
