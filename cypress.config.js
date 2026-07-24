@@ -30,7 +30,14 @@ module.exports = defineConfig({
       json: true, 
     },
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // register mochawesome reporter plugin
+      try {
+        require('cypress-mochawesome-reporter/plugin')(on);
+      } catch (e) {
+      
+        throw e;
+      }
+      return config;
     },
   },
 });
