@@ -1,5 +1,6 @@
 node_modules/
 dist/
-videos/
-reports/
-screenshots/
+cypress/videos/
+cypress/reports/
+cypress/screenshots/
+.env

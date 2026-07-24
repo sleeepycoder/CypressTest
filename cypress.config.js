@@ -1,6 +1,12 @@
 const { defineConfig } = require('cypress');
+require("dotenv").config();
 
 module.exports = defineConfig({
+  projectId: process.env.CYPRESS_PROJECT_ID,
+  // ...
+});
+module.exports = defineConfig({
+  projectId: cypress.env.CYPRESS_PROJECT_ID,
   video: true,
   screenshotOnRunFailure: true,
 
