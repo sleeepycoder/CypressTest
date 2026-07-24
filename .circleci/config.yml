@@ -47,7 +47,7 @@ jobs:
             npx cypress run \
               --record \
               --parallel \
-              --key $projectId
+              --key $CYPRESS_RECORD_KEY
 
       - store_artifacts:
           path: cypress/reports
