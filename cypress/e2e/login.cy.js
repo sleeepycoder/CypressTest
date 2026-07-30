@@ -1,6 +1,11 @@
 import { user } from '../fixtures/userData.js';
 import LoginPage from '../pages/LoginPage.js';
 describe('Register User', () => {
+  before(() => {
+    cy.intercept('GET', 'https://automationexercise.com/api/getUserDetailByEmail').as(
+      'getUserDetailByEmail'
+    );
+  });
   beforeEach(() => {
     cy.visit('/'); // Replace with your registration page URL
   });
@@ -21,5 +26,13 @@ describe('Register User', () => {
 
   it('should login with the saved user data', () => {
     cy.get("a[href='/login']").should('be.visible').click();
+    LoginPage.login();
+    cy.get('.shop-menu').find('a').contains('Logout').should('be.visible');
+  });
+
+  it('should fail to login with invalid credentials', () => {
+    cy.get("a[href='/login']").should('be.visible').click();
+    LoginPage.invalidLogin('invalid@example.com', 'wrongpassword');
+    cy.contains('Your email or password is incorrect!', { timeout: 20000 }).should('be.visible');
   });
 });

@@ -1,6 +1,50 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-cypress/videos/
-cypress/reports/
-cypress/screenshots/
+build/
+
+# Environment variables
 .env
+.env.*
+!.env.example
+
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/reports/
+cypress/downloads/
+
+# Reports
+mochawesome-report/
+mochawesome.json
+mochawesome*.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.tmp/
+temp/
+
+# Optional: Ignore all video files anywhere
+*.mp4

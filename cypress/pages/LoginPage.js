@@ -43,8 +43,13 @@ class LoginPage {
       cy.get('.shop-menu')
         .last()
         .should('be.visible')
-        .should('contain', ' Logged in as ' + user.firstName);
+        .should('contain', ' Logged in as ' + savedUser.firstName);
     });
+  }
+  invalidLogin(email, password) {
+    cy.get('[data-qa="login-email"]').should('be.visible').clear().type(email);
+    cy.get('[data-qa="login-password"]').should('be.visible').clear().type(password);
+    cy.get('[data-qa="login-button"]').click();
   }
 }
 
